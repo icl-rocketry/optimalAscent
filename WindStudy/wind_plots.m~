@@ -1,0 +1,23 @@
+clear vars;
+figure(1)
+clf(1)
+for day = 1:366
+    
+    h = (0:100:5000)';
+    
+    lat = 32.9904*ones(size(h));
+    long = -106.9750*ones(size(h));
+    
+    wind = atmoshwm(lat,long,h,'day',day*ones(size(h)));
+    
+    windstore
+    
+    figure(1);
+    hold on
+    %plot(wind(:,1), h, '--')
+    %plot(wind(:,2), h, ':')
+    plot(sqrt(wind(:,1).^2+wind(:,2).^2), h)
+end
+
+xlabel('Wind Speed (m/s)')
+ylabel('Altitude (m)')
